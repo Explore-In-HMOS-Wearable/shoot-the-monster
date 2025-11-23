@@ -86,13 +86,13 @@ struct Index {
         this.accelZ = data.z.toFixed(3);
 
         this.updateCursorPosition(data.x, data.y);
-      }, { interval: 10000000 });
+      }, { interval: 10*10*10*10*10*10*10 });
 
       sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
         this.gyroX = data.x.toFixed(3);
         this.gyroY = data.y.toFixed(3);
         this.gyroZ = data.z.toFixed(3);
-      }, { interval: 10000000 });
+      }, { interval: 10*10*10*10*10*10*10 });
 
       this.isMonitoring = true;
       promptAction.showToast({ message: 'Go!', duration: 1000 });
