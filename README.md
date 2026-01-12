@@ -6,7 +6,7 @@ The Shoot The Monster game application is a game app built using gyroscope and a
 
 # Preview
 
-<div>
+<div style="display: flex; width:'100%'; gap:12px;">
     <img src="./screenshots/ss1.png" width="24%">
     <img src="./screenshots/ss2.png" width="24%">
     <img src="./screenshots/ss3.png" width="24%">

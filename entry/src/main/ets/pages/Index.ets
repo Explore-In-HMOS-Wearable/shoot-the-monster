@@ -6,13 +6,13 @@ import display from '@ohos.display';
 @Entry
 @Component
 struct Index {
-  @State accelX: string = '0.000';
-  @State accelY: string = '0.000';
-  @State accelZ: string = '0.000';
-  @State gyroX: string = '0.000';
-  @State gyroY: string = '0.000';
-  @State gyroZ: string = '0.000';
-  @State isMonitoring: boolean = false;
+  private accelX: string = '0.000';
+  private accelY: string = '0.000';
+  private accelZ: string = '0.000';
+  private gyroX: string = '0.000';
+  private gyroY: string = '0.000';
+  private gyroZ: string = '0.000';
+  private isMonitoring: boolean = false;
 
   @State cursorX: number = 111.5;
   @State cursorY: number = 111.5;
@@ -21,7 +21,7 @@ struct Index {
   @State monsterX: number = 0;
   @State monsterY: number = 0;
   @State monsterVisible: boolean = false;
-  @State monsterSize: number = 30;
+  private monsterSize: number = 30;
 
   private circleDiameter: number = 0
   private circleRadius: number = 0
@@ -63,7 +63,9 @@ struct Index {
   }
 
   private checkMonsterHit(): boolean {
-    if (!this.monsterVisible) return false;
+    if (!this.monsterVisible) {
+      return false;
+    }
 
     const cursorCenterX = this.cursorX + this.dotRadius;
     const cursorCenterY = this.cursorY + this.dotRadius;
@@ -95,11 +97,11 @@ struct Index {
       }, { interval: 10*10*10*10*10*10*10 });
 
       this.isMonitoring = true;
-      promptAction.showToast({ message: 'Go!', duration: 1000 });
+      promptAction.openToast({ message: 'Go!', duration: 1000 });
     } catch (error) {
       const e: BusinessError = error as BusinessError;
       console.error(`Failed to start sensors. Code: ${e.code}, message: ${e.message}`);
-      promptAction.showToast({ message: `Error: ${e.code}`, duration: 2000 });
+      promptAction.openToast({ message: `Error: ${e.code}`, duration: 2000 });
     }
   }
 
@@ -132,7 +134,7 @@ struct Index {
     if (distanceToEdge <= this.edgeThreshold) {
       this.circleColor = Color.Blue;
       this.stopSensors();
-      promptAction.showToast({
+      promptAction.openToast({
         message: `You Died! Score: ${this.score}`,
         duration: 3000,
         bottom: '50%'
@@ -154,7 +156,7 @@ struct Index {
     this.circleColor = Color.Red;
     this.startSensors();
 
-    promptAction.showToast({
+    promptAction.openToast({
       message: 'Get Ready!',
       duration: 1000
     });
@@ -175,7 +177,7 @@ struct Index {
     if (this.monsterVisible && this.checkMonsterHit()) {
       this.score += 10;
       this.monsterVisible = false;
-      promptAction.showToast({
+      promptAction.openToast({
         message: `Nice! +10 : ${this.score}`,
         duration: 1500
       });
@@ -185,7 +187,7 @@ struct Index {
       }, 1000);
     } else {
       const positionText = `X: ${this.cursorX.toFixed(1)}, Y: ${this.cursorY.toFixed(1)}`;
-      promptAction.showToast({
+      promptAction.openToast({
         message: positionText,
         duration: 1000,
         bottom: '50%'

@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.hmosdemos.shootthemoster",
+    "bundleName": "com.hmosdemos.wearable.shootthemoster",
     "vendor": "hmosdemos",
     "versionCode": 1000000,
     "versionName": "1.0.0",
